@@ -1,0 +1,78 @@
+{
+  "dose_ranges": {
+    "metformin":       { "min_mg": 500,  "max_mg": 2550, "unit": "mg"  },
+    "lisinopril":      { "min_mg": 2.5,  "max_mg": 40,   "unit": "mg"  },
+    "atorvastatin":    { "min_mg": 10,   "max_mg": 80,   "unit": "mg"  },
+    "amlodipine":      { "min_mg": 2.5,  "max_mg": 10,   "unit": "mg"  },
+    "warfarin":        { "min_mg": 1,    "max_mg": 10,   "unit": "mg"  },
+    "aspirin":         { "min_mg": 81,   "max_mg": 325,  "unit": "mg"  },
+    "omeprazole":      { "min_mg": 10,   "max_mg": 40,   "unit": "mg"  },
+    "furosemide":      { "min_mg": 20,   "max_mg": 600,  "unit": "mg"  },
+    "insulin glargine":{ "min_mg": 10,   "max_mg": 100,  "unit": "units"},
+    "levothyroxine":   { "min_mg": 25,   "max_mg": 300,  "unit": "mcg" }
+  },
+
+  "blacklisted_combinations": [
+    {
+      "drugs": ["warfarin", "aspirin"],
+      "reason": "Concurrent use significantly increases bleeding risk",
+      "severity": "high"
+    },
+    {
+      "drugs": ["lisinopril", "potassium"],
+      "reason": "ACE inhibitor + potassium supplement can cause hyperkalemia",
+      "severity": "medium"
+    },
+    {
+      "drugs": ["warfarin", "ibuprofen"],
+      "reason": "NSAIDs increase anticoagulant effect of warfarin",
+      "severity": "high"
+    },
+    {
+      "drugs": ["furosemide", "gentamicin"],
+      "reason": "Loop diuretics increase nephrotoxicity of aminoglycosides",
+      "severity": "high"
+    },
+    {
+      "drugs": ["atorvastatin", "clarithromycin"],
+      "reason": "CYP3A4 inhibition raises statin levels, myopathy risk",
+      "severity": "medium"
+    },
+    {
+      "drugs": ["sildenafil", "nitrates"],
+      "reason": "Severe hypotension risk",
+      "severity": "high"
+    },
+    {
+      "drugs": ["ssri", "tramadol"],
+      "reason": "Serotonin syndrome risk",
+      "severity": "high"
+    }
+  ],
+
+  "drug_classes": {
+    "ace_inhibitors":  ["lisinopril", "enalapril", "ramipril", "captopril", "benazepril"],
+    "arbs":            ["losartan", "valsartan", "irbesartan", "olmesartan", "candesartan"],
+    "beta_blockers":   ["metoprolol", "carvedilol", "atenolol", "propranolol", "bisoprolol"],
+    "statins":         ["atorvastatin", "rosuvastatin", "simvastatin", "pravastatin", "lovastatin"],
+    "nsaids":          ["ibuprofen", "naproxen", "diclofenac", "celecoxib", "indomethacin"],
+    "anticoagulants":  ["warfarin", "apixaban", "rivaroxaban", "dabigatran", "heparin"],
+    "ssri":            ["sertraline", "fluoxetine", "escitalopram", "citalopram", "paroxetine"],
+    "loop_diuretics":  ["furosemide", "torsemide", "bumetanide"]
+  },
+
+  "class_combination_rules": [
+    {
+      "classes": ["ace_inhibitors", "arbs"],
+      "reason": "Dual renin-angiotensin blockade increases risk of hypotension and renal failure",
+      "severity": "high"
+    },
+    {
+      "classes": ["anticoagulants", "nsaids"],
+      "reason": "Increased bleeding risk with anticoagulant + NSAID combination",
+      "severity": "high"
+    }
+  ],
+
+  "dose_tolerance_percent": 10
+}
